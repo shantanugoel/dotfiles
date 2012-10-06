@@ -89,9 +89,6 @@ nmap <F11>  :TrinityToggleNERDTree<CR>
 " YankRing
 nnoremap <silent> <F3> :YRShow<CR>
 
-" Gundo
-nnoremap <F5> :GundoToggle<CR>
-
 "" Orig
 set diffexpr=MyDiff()
 function MyDiff()
