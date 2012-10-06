@@ -1,0 +1,120 @@
+" Pathogen
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect()
+
+" Orig
+set nocompatible
+source $VIMRUNTIME/vimrc_example.vim
+source $VIMRUNTIME/mswin.vim
+behave mswin
+
+" Pathogen + General
+syntax on
+filetype plugin indent on
+
+" General
+color torte
+set writebackup
+set nobackup
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set expandtab
+set incsearch
+set hls
+set cino=(0
+set hl=l:Visual
+set smartindent
+set showmatch     " set show matching parenthesis
+set bs=indent,eol,start     " Backspace over everything in insert mode
+set ignorecase
+set smartcase     " ignore case if search pattern is all lowercase,
+                  "    case-sensitive otherwise
+"set hidden        "Hide buffers instead of closing so that buffers can be switched without being forced to write
+set history=1000         " remember more commands and search history
+set undolevels=1000      " use many muchos levels of undo
+set wildignore=*.swp,*.bak,*.pyc,*.class "ignore some file extensions while completing names by tab
+set title                " change the terminal's title
+set showmode                    " always show what mode we're currently editing in
+set relativenumber                      " always show line numbers
+"set listchars=tab:>-,trail:·,nbsp:·
+"set list
+set pastetoggle=<F2> "Press F2 before pasing block of data to avoid auto indentation
+"set foldmethod=syntax
+"Clear search highlighting by pressing ,/
+nmap <silent> ,/ :nohlsearch<CR> 
+set encoding=utf-8
+set wrap
+set textwidth=79
+set formatoptions=cqrn1
+"set guifont=Courier_New:h10
+autocmd filetype C set colorcolumn=80
+set cursorline "Highlight the line where cursor is current present
+set cursorcolumn "Highlight the column where cursor is current present
+"Toggle highlighting with <Leader>c command
+nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+
+"unix like mode for tab completion while opening files
+set wildmode=longest,list:longest,list:full
+
+"folding settings
+set foldmethod=indent   "fold based on syntax
+set foldnestmax=10      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1         "this is just what i use
+set foldcolumn=2
+set foldnestmax=4
+"Then you can toggle folding with za. You can fold everything with zM and unfold everything with zR. zm and zr can be used to get those folds just right. Always remember the almighty help file at help :folding if you get stuck.zc and zo operate only for current fold
+
+"Fold column colors. default is too bright
+hi FoldColumn      guifg=#93b3a3 guibg=#3f4040
+
+" Vim indent guides
+let g:indent_guides_guide_size = 1
+"autocmd filetype C IndentGuidesEnable
+
+"Source Insight type IDE
+" Open and close all the three plugins on the same time 
+nmap <F8>   :TrinityToggleAll<CR> 
+
+" Open and close the srcexpl.vim separately 
+nmap <F9>   :TrinityToggleSourceExplorer<CR> 
+
+" Open and close the taglist.vim separately 
+nmap <F10>  :TrinityToggleTagList<CR> 
+
+" Open and close the NERD_tree.vim separately 
+nmap <F11>  :TrinityToggleNERDTree<CR> 
+
+" YankRing
+nnoremap <silent> <F3> :YRShow<CR>
+
+" Gundo
+nnoremap <F5> :GundoToggle<CR>
+
+"" Orig
+set diffexpr=MyDiff()
+function MyDiff()
+  let opt = '-a --binary '
+  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+  let arg1 = v:fname_in
+  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+  let arg2 = v:fname_new
+  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+  let arg3 = v:fname_out
+  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+  let eq = ''
+  if $VIMRUNTIME =~ ' '
+    if &sh =~ '\<cmd'
+      let cmd = '""' . $VIMRUNTIME . '\diff"'
+      let eq = '"'
+    else
+      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+    endif
+  else
+    let cmd = $VIMRUNTIME . '\diff'
+  endif
+  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+endfunction
+
