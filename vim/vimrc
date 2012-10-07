@@ -89,6 +89,9 @@ nmap <F11>  :TrinityToggleNERDTree<CR>
 " YankRing
 nnoremap <silent> <F3> :YRShow<CR>
 
+"Rainbow parenthese toggle
+nnoremap <Leader>r :RainbowParenthesesToggle<CR>:RainbowParenthesesLoadSquare<CR>:RainbowParenthesesLoadBraces<CR>
+
 "" Orig
 set diffexpr=MyDiff()
 function MyDiff()
