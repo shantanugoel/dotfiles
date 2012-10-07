@@ -92,6 +92,14 @@ nnoremap <silent> <F3> :YRShow<CR>
 "Rainbow parenthese toggle
 nnoremap <Leader>r :RainbowParenthesesToggle<CR>:RainbowParenthesesLoadSquare<CR>:RainbowParenthesesLoadBraces<CR>
 
+"Tagbar
+nnoremap <Leader>tg :TagbarToggle<CR>
+
+"Ctrl-A/Ctrl-X are taken up windows key bindins for select all and cut
+"so remap alt-a and alt-x to increment/decrement numbers
+:nnoremap <A-a> <C-a>
+:nnoremap <A-x> <C-x>
+
 "" Orig
 set diffexpr=MyDiff()
 function MyDiff()
