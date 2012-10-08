@@ -2,6 +2,9 @@
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
+"Better matching
+runtime macros/matchit.vim
+
 " Orig
 set nocompatible
 source $VIMRUNTIME/vimrc_example.vim
@@ -44,12 +47,11 @@ set smartcase     " ignore case if search pattern is all lowercase,
 "set hidden        "Hide buffers instead of closing so that buffers can be switched without being forced to write
 set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
-set wildignore=*.swp,*.bak,*.pyc,*.class "ignore some file extensions while completing names by tab
 set title                " change the terminal's title
 set showmode                    " always show what mode we're currently editing in
 set relativenumber                      " always show line numbers
-"set list
-"set listchars=trail:·,extends:#  "Show trailing whitespace & # for lines going offscreen
+set listchars=trail:·,extends:#  "Show trailing whitespace & # for lines going offscreen
+set list
 set pastetoggle=<F2> "Press F2 before pasing block of data to avoid auto indentation
 "set foldmethod=syntax
 "Clear search highlighting by pressing ,/
@@ -62,11 +64,20 @@ set formatoptions=cqrn1
 autocmd filetype C set colorcolumn=80
 set cursorline "Highlight the line where cursor is current present
 set cursorcolumn "Highlight the column where cursor is current present
+set visualbell
 "Toggle highlighting with <Leader>c command
 nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
+"Start scrolling 3 lines before the bottom
+set scrolloff=3
+
 "unix like mode for tab completion while opening files
 set wildmode=longest,list:longest,list:full
+set wildmenu "list of files while using b tabnew e etc
+set wildignore+=*~,*.swp,tags,*.bak,*.pyc,*.class "ignore some file extensions while completing names by tab
+
+"Remove some unneeded prompts
+set shortmess=atI
 
 " Easy window navigation
 map <C-h> <C-w>h
