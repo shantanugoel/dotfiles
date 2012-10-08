@@ -1,4 +1,0 @@
-color mustang
-"Fold column colors. default is too bright
-hi FoldColumn      guifg=#93b3a3 guibg=#3f4040
-set guioptions-=T  "remove toolbar

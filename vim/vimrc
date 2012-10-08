@@ -13,7 +13,17 @@ syntax on
 filetype plugin indent on
 
 " General
-color torte
+if has("gui_running")
+  color mustang
+  set guioptions-=T  "remove toolbar
+  set guioptions-=m  "remove menu
+  if has("win32")
+    set guifont=Courier_New:h10
+endif
+else
+  color torte
+endif
+set fileformats=unix,dos "Use unix as first fileformat to make vimrc cross platform
 set writebackup
 set nobackup
 set noswapfile
@@ -100,6 +110,8 @@ nnoremap <silent> <F3> :YRShow<CR>
 nnoremap <Leader>r :RainbowParenthesesToggle<CR>:RainbowParenthesesLoadSquare<CR>:RainbowParenthesesLoadBraces<CR>
 
 "Tagbar
+"open on left side
+let g:tagbar_left=1
 nnoremap <Leader>tg :TagbarToggle<CR>
 
 "Ctrl-A/Ctrl-X are taken up windows key bindins for select all and cut

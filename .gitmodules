@@ -4,9 +4,6 @@
 [submodule "vim/bundle/SrcExpl"]
 	path = vim/bundle/SrcExpl
 	url = https://github.com/wesleyche/SrcExpl.git
-[submodule "vim/bundle/Trinity"]
-	path = vim/bundle/Trinity
-	url = https://github.com/wesleyche/Trinity.git
 [submodule "vim/bundle/YankRing"]
 	path = vim/bundle/YankRing
 	url = https://github.com/vim-scripts/YankRing.vim
