@@ -22,3 +22,6 @@
 [submodule "vim/bundle/tagbar"]
 	path = vim/bundle/tagbar
 	url = git://github.com/majutsushi/tagbar
+[submodule "vim/bundle/Trinity/plugin"]
+	path = vim/bundle/Trinity/plugin
+	url = https://github.com/wesleyche/Trinity.git
