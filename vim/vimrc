@@ -145,4 +145,4 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 "Use MRU + file find + buffer mode for CtrlP by default
 let g:ctrlp_cmd = 'CtrlPMixed'
 "Set .p4config as a market to find p4 sync'ed builds' root
-let g:ctrlp_root_markers += '.p4config'
+let g:ctrlp_root_markers = ['.p4config']
