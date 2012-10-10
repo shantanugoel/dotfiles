@@ -25,3 +25,6 @@
 [submodule "vim/bundle/Trinity/plugin"]
 	path = vim/bundle/Trinity/plugin
 	url = https://github.com/wesleyche/Trinity.git
+[submodule "vim/bundle/ctrlp"]
+	path = vim/bundle/ctrlp
+	url = https://github.com/kien/ctrlp.vim
