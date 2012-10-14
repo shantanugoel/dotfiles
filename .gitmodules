@@ -1,9 +1,6 @@
 [submodule "vim/bundle/vim-pathogen"]
 	path = vim/bundle/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen.git
-[submodule "vim/bundle/SrcExpl"]
-	path = vim/bundle/SrcExpl
-	url = https://github.com/wesleyche/SrcExpl.git
 [submodule "vim/bundle/YankRing"]
 	path = vim/bundle/YankRing
 	url = https://github.com/vim-scripts/YankRing.vim
@@ -22,9 +19,6 @@
 [submodule "vim/bundle/tagbar"]
 	path = vim/bundle/tagbar
 	url = git://github.com/majutsushi/tagbar
-[submodule "vim/bundle/Trinity/plugin"]
-	path = vim/bundle/Trinity/plugin
-	url = https://github.com/wesleyche/Trinity.git
 [submodule "vim/bundle/ctrlp"]
 	path = vim/bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim
@@ -34,3 +28,12 @@
 [submodule "vim/bundle/OmniCppComplete"]
 	path = vim/bundle/OmniCppComplete
 	url = https://github.com/vim-scripts/OmniCppComplete.git
+[submodule "vim/bundle/bufkill"]
+	path = vim/bundle/bufkill
+	url = https://github.com/vim-scripts/bufkill.vim.git
+[submodule "vim/bundle/syntastic"]
+	path = vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
+[submodule "vim/bundle/minibufexpl"]
+	path = vim/bundle/minibufexpl
+	url = https://github.com/fholgado/minibufexpl.vim.git
