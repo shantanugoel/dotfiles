@@ -160,3 +160,6 @@ set completeopt=menuone,menu,longest,preview
 
 "Map ctrl+F12 to generate ctags
 map <C-F12> :!ctags -R --sort=yes --c-kinds=+p --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+
+"Map Alt+] to open the tag definition in a split window
+map <A-]> :sp <CR>:exec("tag ".expand("<cword>"))<CR>
