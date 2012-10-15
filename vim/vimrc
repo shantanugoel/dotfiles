@@ -11,11 +11,11 @@ source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
 
-" Pathogen + General
+" General
 syntax on
 filetype plugin indent on
 
-" General
+" Colorscheme and gui options
 if has("gui_running")
   color mustang
   set guioptions-=T  "remove toolbar
@@ -26,52 +26,49 @@ endif
 else
   color torte
 endif
-set fileformats=unix,dos "Use unix as first fileformat to make vimrc cross platform
-set writebackup
-set nobackup
-set noswapfile
-set shiftwidth=2
+
+set fileformats=unix,dos        " Use unix as first fileformat to make vimrc cross platform
+set writebackup                 " Have a backup file during edit session
+set nobackup                    " Delete backup file when session is complete
+set noswapfile                  " Don't use a swap file
+set shiftwidth=2                " Conventions for tabs
 set softtabstop=2
 set tabstop=2
 set expandtab
-set incsearch
-set hls
-set cino=(0
-set hl=l:Visual
+                                "Don't expand tabs to spaces for makefiles
+autocmd filetype makefile,Makefile,*.mk,*.mak setlocal noet
+set cino=(0                     " c indentation options for aligning func parameters etc with previous line
 set smartindent
-set showmatch     " set show matching parenthesis
-set bs=indent,eol,start     " Backspace over everything in insert mode
-set ignorecase
-set smartcase     " ignore case if search pattern is all lowercase,
-                  "    case-sensitive otherwise
-"set hidden        "Hide buffers instead of closing so that buffers can be switched without being forced to write
-set history=1000         " remember more commands and search history
-set undolevels=1000      " use many muchos levels of undo
-set title                " change the terminal's title
+set incsearch                   " Search as you type
+set hls                         " Highlightfound matches
+set virtualedit=all             " Allow cursor to move past last character
+set hl=l:Visual                 " Highlight visual mode selection
+set showmatch                   " set show matching parenthesis
+set bs=indent,eol,start         " Backspace over everything in insert mode
+set ignorecase                  " ignore case if search pattern is all lowercase,
+set smartcase                   " case-sensitive otherwise
+set hidden                      " Hide buffers instead of closing so that buffers can be switched without being forced to write
+set history=1000                " remember more commands and search history
+set undolevels=1000             " use many muchos levels of undo
+set title                       " change the terminal's title
 set showmode                    " always show what mode we're currently editing in
-set relativenumber                      " always show line numbers
-set listchars=trail:·,extends:#  "Show trailing whitespace & # for lines going offscreen
+set relativenumber              " always show line numbers
+set listchars=trail:·,extends:# " Show trailing whitespace & # for lines going offscreen
 set list
-set pastetoggle=<F2> "Press F2 before pasing block of data to avoid auto indentation
-"set foldmethod=syntax
-"Clear search highlighting by pressing ,/
-nmap <silent> ,/ :nohlsearch<CR> 
+set pastetoggle=<F2>            "Press F2 before pasing block of data to avoid auto indentation
+set scrolloff=3                 "Start scrolling 3 lines before the bottom
 set encoding=utf-8
 set wrap
 set textwidth=79
 set formatoptions=cqrn1
-"set guifont=Courier_New:h10
 autocmd filetype C set colorcolumn=80
-"Don't expand tabs to spaces for makefiles
-autocmd filetype makefile,Makefile,*.mk,*.mak setlocal noet
-set cursorline "Highlight the line where cursor is current present
-set cursorcolumn "Highlight the column where cursor is current present
+set cursorline                  "Highlight the line where cursor is current present
+set cursorcolumn                "Highlight the column where cursor is current present
 set visualbell
+nmap <silent> ,/ :nohlsearch<CR> "Clear search highlighting by pressing ,/
 "Toggle highlighting with <Leader>c command
 nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
-"Start scrolling 3 lines before the bottom
-set scrolloff=3
 
 "unix like mode for tab completion while opening files
 set wildmode=longest,list:longest,list:full
@@ -83,17 +80,8 @@ set viminfo='100,n$HOME/vimtmp/.viminfo
 set undodir=$HOME/vimtmp
 set undofile
 
-" Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
-
 "Remove some unneeded prompts
 set shortmess=atI
-
-" Easy window navigation
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
 
 "folding settings
 set foldmethod=indent   "fold based on syntax
@@ -109,57 +97,72 @@ hi FoldColumn      guifg=#93b3a3 guibg=#3f4040
 
 " Vim indent guides
 let g:indent_guides_guide_size = 1
-"autocmd filetype C IndentGuidesEnable
 
-"Source Insight type IDE
-" Open and close all the three plugins on the same time 
-nmap <F8>   :TagbarToggle<CR>:NERDTreeToggle<CR>
+" General Key Mappings
 
-" Open and close the NERD_tree.vim separately 
-nmap <F9>  :NERDTreeToggle<CR> 
+" Easy window navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 
-" YankRing
-nnoremap <silent> <F3> :YRShow<CR>
+" Switch CWD to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-"Rainbow parenthese toggle
-nnoremap <Leader>r :RainbowParenthesesToggle<CR>:RainbowParenthesesLoadSquare<CR>:RainbowParenthesesLoadBraces<CR>
+" Map ctrl+F12 to generate ctags
+map <C-F12> :!ctags -R --sort=yes --c-kinds=+p --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
-"Tagbar
-"open on left side
-"let g:tagbar_left=1
-nnoremap <Leader>tg :TagbarToggle<CR>
+"Map Alt+] to open the tag definition in a split window
+map <A-]> :sp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 "Ctrl-A/Ctrl-X are taken up windows key bindins for select all and cut
 "so remap alt-a and alt-x to increment/decrement numbers
 :nnoremap <A-a> <C-a>
 :nnoremap <A-x> <C-x>
 
-" Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
+" Plugins
 
+"#Plugin: Tagbar
+"Uncomment next line to open on left side
+"let g:tagbar_left=1
+"Toggle tagbar
+nnoremap <Leader>tg :TagbarToggle<CR>
+
+" Open and close the NERD_tree.vim separately 
+nmap <F9>  :NERDTreeToggle<CR> 
+
+"Source Insight type IDE
+nmap <F8>   :TagbarToggle<CR>:NERDTreeToggle<CR>
+
+"#Plugin: YankRing
+"Show yankring preview window
+nnoremap <silent> <F3> :YRShow<CR>
+
+"#Plugin: Rainbow parentheses
+"Toggle
+nnoremap <Leader>r :RainbowParenthesesToggle<CR>:RainbowParenthesesLoadSquare<CR>:RainbowParenthesesLoadBraces<CR>
+
+"#Plugin: CtrlP
 "Use MRU + file find + buffer mode for CtrlP by default
 let g:ctrlp_cmd = 'CtrlPMixed'
 "Set .p4config as a market to find p4 sync'ed builds' root
 let g:ctrlp_root_markers = ['.p4config']
 
-"opnicppcomplete configuration
+"#Plugin: omnicppcomplete
 let OmniCpp_GlobalScopeSearch   = 1
-let OmniCpp_NameSpaceSearch   = 2
+let OmniCpp_NameSpaceSearch     = 2
 let OmniCpp_DisplayMode         = 1
-let OmniCpp_ShowScopeInAbbr     = 1 "do not show namespace in pop-up
-let OmniCpp_ShowPrototypeInAbbr = 1 "show prototype in pop-up
-let OmniCpp_ShowAccess          = 1 "show access in pop-up
-let OmniCpp_SelectFirstItem     = 1 "select first item in pop-up
-let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
-let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+let OmniCpp_ShowScopeInAbbr     = 1 " do not show namespace in pop-up
+let OmniCpp_ShowPrototypeInAbbr = 1 " show prototype in pop-up
+let OmniCpp_ShowAccess          = 1 " show access in pop-up
+let OmniCpp_SelectFirstItem     = 1 " select first item in pop-up
+let OmniCpp_MayCompleteDot      = 1 " autocomplete after .
+let OmniCpp_MayCompleteArrow    = 1 " autocomplete after ->
+let OmniCpp_MayCompleteScope    = 1 " autocomplete after ::
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
-
-"Map ctrl+F12 to generate ctags
-map <C-F12> :!ctags -R --sort=yes --c-kinds=+p --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-
-"Map Alt+] to open the tag definition in a split window
-map <A-]> :sp <CR>:exec("tag ".expand("<cword>"))<CR>
