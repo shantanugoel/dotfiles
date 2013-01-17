@@ -20,6 +20,7 @@ if has("gui_running")
   color mustang
   set guioptions-=T  "remove toolbar
   set guioptions-=m  "remove menu
+  set guioptions-=L  "Do not create left scrollbar on vsplit
   if has("win32")
     set guifont=Courier_New:h10
 endif
@@ -53,7 +54,7 @@ set undolevels=1000             " use many muchos levels of undo
 set title                       " change the terminal's title
 set showmode                    " always show what mode we're currently editing in
 set relativenumber              " always show line numbers
-set listchars=trail:�,extends:# " Show trailing whitespace & # for lines going offscreen
+set listchars=trail:·,extends:# " Show trailing whitespace & # for lines going offscreen
 set list
 set pastetoggle=<F2>            "Press F2 before pasing block of data to avoid auto indentation
 set scrolloff=3                 "Start scrolling 3 lines before the bottom
@@ -93,7 +94,7 @@ set foldnestmax=4
 hi FoldColumn      guifg=#93b3a3 guibg=#3f4040
 
 "Search tags file upwards recursively
-set tags=./tags;/    
+set tags=./tags;/
 
 " Vim indent guides
 let g:indent_guides_guide_size = 1
@@ -131,6 +132,23 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 :nnoremap <A-a> <C-a>
 :nnoremap <A-x> <C-x>
 
+"Grep for word under cursor in current dir recursively and open quicklist window
+:nnoremap <Leader>g :vimgrep /<C-r><C-w>/gj ** <CR>:cw<CR>
+"Grep for word under cursor in current file and open quicklist window
+:nnoremap <Leader>gf :vimgrep /<C-r><C-w>/gj % <CR>:cw<CR>
+
+"Status
+set statusline=%F%m%r%h%w\  "filename
+"set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+"set statusline+=%{&ff}] "file format
+set statusline+=%m      "modified flag
+set statusline+=%r      "read only flag
+set statusline+=%=      "left/right separator
+set statusline+=%c,     "cursor column
+set statusline+=%l/%L   "cursor line/total lines
+
+set laststatus=2
+
 " Plugins
 
 "#Plugin: Tagbar
@@ -155,7 +173,7 @@ nnoremap <Leader>r :RainbowParenthesesToggle<CR>:RainbowParenthesesLoadSquare<CR
 
 "#Plugin: CtrlP
 "Use MRU + file find + buffer mode for CtrlP by default
-let g:ctrlp_cmd = 'CtrlPMixed'
+"let g:ctrlp_cmd = 'CtrlPMixed'
 "Set .p4config as a market to find p4 sync'ed builds' root
 let g:ctrlp_root_markers = ['.p4config']
 
