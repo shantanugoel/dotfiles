@@ -136,6 +136,8 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 :nnoremap <Leader>g :vimgrep /<C-r><C-w>/gj ** <CR>:cw<CR>
 "Grep for word under cursor in current file and open quicklist window
 :nnoremap <Leader>gf :vimgrep /<C-r><C-w>/gj % <CR>:cw<CR>
+"Grep for word under cursor in current project root and open quicklist window
+:nnoremap <Leader>gp :ProjectRootExe /<C-r><C-w>/gj ** <CR>:cw<CR>
 
 "Status
 set statusline=%F%m%r%h%w\  "filename
@@ -174,8 +176,12 @@ nnoremap <Leader>r :RainbowParenthesesToggle<CR>:RainbowParenthesesLoadSquare<CR
 "#Plugin: CtrlP
 "Use MRU + file find + buffer mode for CtrlP by default
 "let g:ctrlp_cmd = 'CtrlPMixed'
-"Set .p4config as a market to find p4 sync'ed builds' root
+"Set .p4config as a marker to find p4 sync'ed builds' root
 let g:ctrlp_root_markers = ['.p4config']
+
+"#Plugin: vim-projectroot
+"Set .p4config as a marker to find p4 sync'ed builds' root
+let g:rootmarkers = ['.p4config']
 
 "#Plugin: omnicppcomplete
 let OmniCpp_GlobalScopeSearch   = 1
