@@ -31,9 +31,6 @@
 [submodule "vim/bundle/syntastic"]
 	path = vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
-[submodule "vim/bundle/minibufexpl"]
-	path = vim/bundle/minibufexpl
-	url = https://github.com/fholgado/minibufexpl.vim.git
 [submodule "vim/bundle/cscope"]
 	path = vim/bundle/cscope
 	url = https://github.com/brookhong/cscope.vim
