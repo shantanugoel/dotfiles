@@ -38,6 +38,7 @@ set tabstop=2
 set expandtab
                                 "Don't expand tabs to spaces for makefiles
 autocmd filetype makefile,Makefile,*.mk,*.mak setlocal noet
+autocmd FileType qf wincmd J    "Open quickfix window at the bottom & span full
 set cino=(0                     " c indentation options for aligning func parameters etc with previous line
 set smartindent
 set incsearch                   " Search as you type
@@ -144,7 +145,6 @@ set statusline=%F%m%r%h%w\  "filename
 "set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
 "set statusline+=%{&ff}] "file format
 set statusline+=%m      "modified flag
-set statusline+=%r      "read only flag
 set statusline+=%=      "left/right separator
 set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
@@ -178,6 +178,7 @@ nnoremap <Leader>r :RainbowParenthesesToggle<CR>:RainbowParenthesesLoadSquare<CR
 "let g:ctrlp_cmd = 'CtrlPMixed'
 "Set .p4config as a marker to find p4 sync'ed builds' root
 let g:ctrlp_root_markers = ['.p4config']
+let g:ctrlp_extensions = ['tag']
 
 "#Plugin: vim-projectroot
 "Set .p4config as a marker to find p4 sync'ed builds' root
