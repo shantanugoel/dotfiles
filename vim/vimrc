@@ -201,5 +201,5 @@ let OmniCpp_MayCompleteScope    = 1 " autocomplete after ::
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
 
-#supertab
+"supertab
 let g:SuperTabDefaultCompletionType = "context"
