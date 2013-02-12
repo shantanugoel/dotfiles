@@ -17,16 +17,18 @@ filetype plugin indent on
 
 " Colorscheme and gui options
 if has("gui_running")
-  color mustang
+  "color mustang
   set guioptions-=T  "remove toolbar
   set guioptions-=m  "remove menu
   set guioptions-=L  "Do not create left scrollbar on vsplit
   if has("win32")
-    set guifont=Courier_New:h10
+    "set guifont=Courier_New:h10
 endif
 else
   color torte
 endif
+set background=dark
+colorscheme solarized
 
 set fileformats=unix,dos        " Use unix as first fileformat to make vimrc cross platform
 set writebackup                 " Have a backup file during edit session
