@@ -111,6 +111,11 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 " Tip: Use <C-w> + upper case hjkl to move splits
 
+"Toggle line numbers
+nmap \l :call NumberToggle()<CR>
+"Toggle paste mode
+nmap \o :set paste!<CR>
+
 "Clear search highlighting by pressing ,/
 nmap <silent> ,/ :nohlsearch<CR>
 
@@ -137,10 +142,12 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 "Grep for word under cursor in current dir recursively and open quicklist window
 :nnoremap <Leader>g :vimgrep /<C-r><C-w>/gj ** <CR>:cw<CR>
+"Grep for word under cursor in custom dir recursively and open quicklist window
+:nnoremap <Leader>gc :vimgrep /<C-r><C-w>/gj <C-R>=getcwd()<CR>/**
 "Grep for word under cursor in current file and open quicklist window
 :nnoremap <Leader>gf :vimgrep /<C-r><C-w>/gj % <CR>:cw<CR>
 "Grep for word under cursor in current project root and open quicklist window
-:nnoremap <Leader>gp :ProjectRootExe /<C-r><C-w>/gj ** <CR>:cw<CR>
+:nnoremap <Leader>gp :ProjectRootExe vimgrep /<C-r><C-w>/gj ** <CR>:cw<CR>
 
 "Status
 set statusline=%F%m%r%h%w\  "filename
@@ -203,3 +210,14 @@ set completeopt=menuone,menu,longest,preview
 
 "supertab
 let g:SuperTabDefaultCompletionType = "context"
+
+"Functions
+
+"Toggle line numbers
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
