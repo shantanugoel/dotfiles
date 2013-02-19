@@ -56,7 +56,12 @@ set history=1000                " remember more commands and search history
 set undolevels=1000             " use many muchos levels of undo
 set title                       " change the terminal's title
 set showmode                    " always show what mode we're currently editing in
-set relativenumber              " always show line numbers
+set relativenumber              " always show line numbers by default
+"Switch back to absolute numbers when focus to current buffer or window is lost
+au FocusLost * set number
+au WinEnter * set relativenumber
+au FocusGained * set relativenumber
+au WinLeave * set number
 set listchars=trail:·,extends:# " Show trailing whitespace & # for lines going offscreen
 set list
 set pastetoggle=<F2>            "Press F2 before pasing block of data to avoid auto indentation
