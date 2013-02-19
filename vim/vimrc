@@ -116,13 +116,19 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 " Tip: Use <C-w> + upper case hjkl to move splits
 
+" Easy buffer movement
+map <C-Tab> :bnext<CR>
+map <C-S-Tab> :bprev<CR>
+map <C-PageUp> :bfirst<CR>
+map <C-PageDown> :blast<CR>
+
 "Toggle line numbers
 nmap \l :call NumberToggle()<CR>
 "Toggle paste mode
 nmap \o :set paste!<CR>
 
 "Clear search highlighting by pressing ,/
-nmap <silent> ,/ :nohlsearch<CR>
+nmap <silent> <Leader>/ :nohlsearch<CR>
 
 "Toggle highlighting with <Leader>c command
 nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
