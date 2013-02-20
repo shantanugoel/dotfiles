@@ -22,7 +22,7 @@ if has("gui_running")
   set guioptions-=m  "remove menu
   set guioptions-=L  "Do not create left scrollbar on vsplit
   if has("win32")
-    "set guifont=Courier_New:h10
+    set guifont=Courier_New:h10
 endif
 else
   color torte
@@ -62,11 +62,11 @@ au FocusLost * set number
 au WinEnter * set relativenumber
 au FocusGained * set relativenumber
 au WinLeave * set number
-set listchars=trail:·,extends:# " Show trailing whitespace & # for lines going offscreen
+set encoding=utf-8
+set listchars=tab:»»,trail:·,extends:# " Show trailing whitespace & # for lines going offscreen
 set list
 set pastetoggle=<F2>            "Press F2 before pasing block of data to avoid auto indentation
 set scrolloff=3                 "Start scrolling 3 lines before the bottom
-set encoding=utf-8
 set wrap
 set textwidth=79
 set formatoptions=cqrn1
