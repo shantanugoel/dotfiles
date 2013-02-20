@@ -40,3 +40,6 @@
 [submodule "vim/bundle/tcomment"]
 	path = vim/bundle/tcomment
 	url = git://github.com/tomtom/tcomment_vim.git
+[submodule "vim/bundle/ZoomWin"]
+	path = vim/bundle/ZoomWin
+	url = git://github.com/shantanugoel/ZoomWin.git
