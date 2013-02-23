@@ -43,3 +43,6 @@
 [submodule "vim/bundle/ZoomWin"]
 	path = vim/bundle/ZoomWin
 	url = git://github.com/shantanugoel/ZoomWin.git
+[submodule "vim/bundle/vim-foldsearch"]
+	path = vim/bundle/vim-foldsearch
+	url = git://github.com/embear/vim-foldsearch.git
