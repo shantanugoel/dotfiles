@@ -185,9 +185,14 @@ nmap <F9>  :NERDTreeToggle<CR>
 "Source Insight type IDE
 nmap <F8>   :TagbarToggle<CR>:NERDTreeToggle<CR>
 
-"#Plugin: YankRing
-"Show yankring preview window
-nnoremap <silent> <F3> :YRShow<CR>
+"#Plugin: gtags
+"key mappings
+"Go to definition under cursor
+nmap <Leader>f :Gtags<CR><CR>
+"Go to reference of word under cursor
+nmap <Leader>fr :Gtags -r<CR><CR>
+"Update gtags
+nmap <Leader>fu :ProjectRootExe !gtags
 
 "#Plugin: Rainbow parentheses
 "Toggle

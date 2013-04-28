@@ -43,3 +43,6 @@
 [submodule "vim/bundle/vim-foldsearch"]
 	path = vim/bundle/vim-foldsearch
 	url = git://github.com/embear/vim-foldsearch.git
+[submodule "vim/bundle/gtags"]
+	path = vim/bundle/gtags
+	url = https://github.com/shantanugoel/gtags.git
