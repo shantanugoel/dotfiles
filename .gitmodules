@@ -46,3 +46,6 @@
 [submodule "vim/bundle/gtags"]
 	path = vim/bundle/gtags
 	url = https://github.com/shantanugoel/gtags.git
+[submodule "vim/bundle/vinarise"]
+	path = vim/bundle/vinarise
+	url = https://github.com/Shougo/vinarise.git

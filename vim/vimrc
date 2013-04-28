@@ -186,6 +186,8 @@ nmap <F9>  :NERDTreeToggle<CR>
 nmap <F8>   :TagbarToggle<CR>:NERDTreeToggle<CR>
 
 "#Plugin: gtags
+"Don't jump to result automatically
+let g:Gtags_No_Auto_Jump = 1
 "key mappings
 "Go to definition under cursor
 nmap <Leader>f :Gtags<CR><CR>
@@ -193,6 +195,10 @@ nmap <Leader>f :Gtags<CR><CR>
 nmap <Leader>fr :Gtags -r<CR><CR>
 "Update gtags
 nmap <Leader>fu :ProjectRootExe !gtags
+
+"#Plugin:Vinarise. For hex editing
+"Disable auto detection for now as it is giving some error
+"let g:vinarise_enable_auto_detect = 1
 
 "#Plugin: Rainbow parentheses
 "Toggle
