@@ -236,6 +236,9 @@ set completeopt=menuone,menu,longest,preview
 "supertab
 let g:SuperTabDefaultCompletionType = "context"
 
+"cscope
+let g:cscope_cmd = "cscope"
+
 "Functions
 
 "Toggle line numbers
