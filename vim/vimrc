@@ -160,6 +160,9 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 "Grep for word under cursor in current project root and open quicklist window
 :nnoremap <Leader>gp :ProjectRootExe vimgrep /<C-r><C-w>/gj ** <CR>:cw<CR>
 
+"Filter file for search pattern and add matches in a scratch buffer
+nnoremap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:new<CR>:setlocal bt=nofile<CR>:put! a<CR>
+
 "Status
 set statusline=%F%m%r%h%w\  "filename
 "set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
