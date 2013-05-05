@@ -46,3 +46,6 @@
 [submodule "vim/bundle/vinarise"]
 	path = vim/bundle/vinarise
 	url = https://github.com/Shougo/vinarise.git
+[submodule "vim/bundle/indentLine"]
+	path = vim/bundle/indentLine
+	url = https://github.com/Yggdroot/indentLine.git
