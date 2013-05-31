@@ -28,6 +28,7 @@ else
   color torte
 endif
 set background=dark
+hi StatusLine guibg=#1BB5E0 guifg=black ctermbg=blue ctermfg=black
 "colorscheme solarized
 
 set fileformats=unix,dos        " Use unix as first fileformat to make vimrc cross platform
