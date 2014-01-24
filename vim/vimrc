@@ -118,8 +118,8 @@ map <C-l> <C-w>l
 " Tip: Use <C-w> + upper case hjkl to move splits
 
 " Easy buffer movement
-map <C-Tab> :bnext<CR>
-map <C-S-Tab> :bprev<CR>
+map <C-Tab> :MBEbn<CR>
+map <C-S-Tab> :MBEbp<CR>
 map <C-PageUp> :bfirst<CR>
 map <C-PageDown> :blast<CR>
 
@@ -177,6 +177,14 @@ set statusline+=%l/%L   "cursor line/total lines
 set laststatus=2
 
 " Plugins
+
+"#Plugin: MiniBufExplorer
+"Let mbe cycle around when switching buffers
+let g:miniBufExplCycleArround=1
+"Display cwd in mbe status line
+let g:miniBufExplStatusLineText='%{getcwd()}'
+"always open mbe by default
+let g:miniBufExplBuffersNeeded = 1
 
 "#Plugin: Tagbar
 "Uncomment next line to open on left side
