@@ -46,6 +46,7 @@ set cino=(0                     " c indentation options for aligning func parame
 set smartindent
 set incsearch                   " Search as you type
 set hls                         " Highlightfound matches
+set clipboard=unnamed           " use system clipboard for yanking and putting
 set virtualedit=all             " Allow cursor to move past last character
 set hl=l:Visual                 " Highlight visual mode selection
 set showmatch                   " set show matching parenthesis
