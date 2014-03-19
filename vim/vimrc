@@ -216,7 +216,7 @@ nmap <Leader>fu :ProjectRootExe !gtags
 
 "#Plugin: Rainbow parentheses
 "Toggle
-nnoremap <Leader>r :RainbowParenthesesToggle<CR>:RainbowParenthesesLoadSquare<CR>:RainbowParenthesesLoadBraces<CR>
+nnoremap <Leader>r :RainbowParenthesesToggleAll<CR>
 
 "#Plugin: CtrlP
 "Use MRU + file find + buffer mode for CtrlP by default
@@ -243,9 +243,6 @@ let OmniCpp_MayCompleteScope    = 1 " autocomplete after ::
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
-
-"supertab
-let g:SuperTabDefaultCompletionType = "context"
 
 "cscope
 let g:cscope_cmd = "cscope"
