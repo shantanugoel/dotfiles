@@ -180,6 +180,9 @@ endif
 "Filter file for search pattern and add matches in a scratch buffer
 nnoremap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:new<CR>:setlocal bt=nofile<CR>:put! a<CR>
 
+"Open a scratch buffer
+nnoremap <Leader>s :new<CR>:setlocal bt=nofile<CR>
+
 "Status
 set statusline=%F%m%r%h%w\  "filename
 "set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
