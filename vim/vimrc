@@ -154,14 +154,25 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 :nnoremap <A-x> <C-x>
 
 "Grep for word under cursor in current dir recursively and open quicklist window
-set grepprg=grep
-:nnoremap <Leader>g :silent grep! -nr --mmap --include=\*.{c,cpp,h,xml} <C-r><C-w> * <CR>:copen<CR>
-"Grep for word under cursor in custom dir recursively and open quicklist window
-:nnoremap <Leader>gc :silent grep! -nr --mmap --include=\*.{c,cpp,h,xml} <C-r><C-w> <C-R>=getcwd()<CR>/**
-"Grep for word under cursor in current file and open quicklist window
-:nnoremap <Leader>gf :silent grep! -nr <C-r><C-w> % <CR>:copen<CR>
-"Grep for word under cursor in current project root and open quicklist window
-:nnoremap <Leader>gp :ProjectRootExe silent grep! -nr --mmap --include=\*.{c,cpp,h,xml} <C-r><C-w> * <CR>:copen<CR>
+if(executable("ag"))
+  set grepprg=ag\ --nogroup\ --nocolor
+  :nnoremap <Leader>g :silent AsyncGrep <C-r><C-w> * <CR>:copen<CR>
+  "Grep for word under cursor in custom dir recursively and open quicklist window
+  :nnoremap <Leader>gc :silent AsyncGrep <C-r><C-w> <C-R>=getcwd()<CR>/**
+  "Grep for word under cursor in current file and open quicklist window
+  :nnoremap <Leader>gf :silent AsyncGrep <C-r><C-w> % <CR>:copen<CR>
+  "Grep for word under cursor in current project root and open quicklist window
+  :nnoremap <Leader>gp :ProjectRootExe silent AsyncGrep <C-r><C-w> * <CR>:copen<CR>
+else
+  set grepprg=grep
+  :nnoremap <Leader>g :silent AsyncGrep -nr --mmap --include=\*.{c,cpp,h,xml} <C-r><C-w> * <CR>:copen<CR>
+  "Grep for word under cursor in custom dir recursively and open quicklist window
+  :nnoremap <Leader>gc :silent AsyncGrep -nr --mmap --include=\*.{c,cpp,h,xml} <C-r><C-w> <C-R>=getcwd()<CR>/**
+  "Grep for word under cursor in current file and open quicklist window
+  :nnoremap <Leader>gf :silent AsyncGrep -nr <C-r><C-w> % <CR>:copen<CR>
+  "Grep for word under cursor in current project root and open quicklist window
+  :nnoremap <Leader>gp :ProjectRootExe silent AsyncGrep -nr --mmap --include=\*.{c,cpp,h,xml} <C-r><C-w> * <CR>:copen<CR>
+endif
 
 "Filter file for search pattern and add matches in a scratch buffer
 nnoremap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:new<CR>:setlocal bt=nofile<CR>:put! a<CR>
