@@ -38,8 +38,8 @@ set noswapfile                  " Don't use a swap file
 set shiftwidth=2                " Conventions for tabs
 set softtabstop=2
 set tabstop=2
-set expandtab
-                                "Don't expand tabs to spaces for makefiles
+set expandtab                    "Don't expand tabs to spaces for makefiles
+set lazyredraw                   " redraw only when we need to.
 autocmd filetype makefile,Makefile,*.mk,*.mak setlocal noet
 autocmd FileType qf wincmd J    "Open quickfix window at the bottom & span full
 set cino=(0                     " c indentation options for aligning func parameters etc with previous line
@@ -135,6 +135,9 @@ nmap \o :set paste!<CR>
 "Clear search highlighting by pressing ,/
 nmap <silent> <Leader>/ :nohlsearch<CR>
 
+" highlight last inserted text
+nnoremap <Leader>si `[v`]
+
 "Toggle highlighting with <Leader>c command
 nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
@@ -210,26 +213,11 @@ let g:miniBufExplBuffersNeeded = 1
 "Toggle tagbar
 nnoremap <Leader>tg :TagbarToggle<CR>
 
-" Open and close the NERD_tree.vim separately 
-nmap <F9>  :NERDTreeToggle<CR> 
+" Open and close the NERD_tree.vim separately
+nmap <F9>  :NERDTreeToggle<CR>
 
 "Source Insight type IDE
 nmap <F8>   :TagbarToggle<CR>:NERDTreeToggle<CR>
-
-"#Plugin: gtags
-"Don't jump to result automatically
-let g:Gtags_No_Auto_Jump = 1
-"key mappings
-"Go to definition under cursor
-nmap <Leader>f :Gtags<CR><CR>
-"Go to reference of word under cursor
-nmap <Leader>fr :Gtags -r<CR><CR>
-"Update gtags
-nmap <Leader>fu :ProjectRootExe !gtags
-
-"#Plugin:Vinarise. For hex editing
-"Disable auto detection for now as it is giving some error
-"let g:vinarise_enable_auto_detect = 1
 
 "#Plugin: Rainbow parentheses
 "Toggle
@@ -241,6 +229,9 @@ nnoremap <Leader>r :RainbowParenthesesToggleAll<CR>
 "Set .p4config as a marker to find p4 sync'ed builds' root
 let g:ctrlp_root_markers = ['.p4config']
 let g:ctrlp_extensions = ['tag']
+if(executable("ag"))
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 
 "#Plugin: vim-projectroot
 "Set .p4config as a marker to find p4 sync'ed builds' root
@@ -274,3 +265,15 @@ function! NumberToggle()
     set relativenumber
   endif
 endfunc
+
+" strips trailing whitespace at the end of files. this
+" is called on buffer write in the autogroup above.
+function! StripTrailingWhitespaces()
+    " save last search & cursor position
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    let @/=_s
+    call cursor(l, c)
+endfunction
