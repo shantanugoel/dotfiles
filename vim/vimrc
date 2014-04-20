@@ -72,7 +72,7 @@ set scrolloff=3                 "Start scrolling 3 lines before the bottom
 set wrap
 set textwidth=79
 set formatoptions=cqrn1
-autocmd filetype C set colorcolumn=80
+autocmd FileType cpp,c,cxx,h,hpp,python,sh  setlocal colorcolumn=80
 set cursorline                  "Highlight the line where cursor is current present
 set cursorcolumn                "Highlight the column where cursor is current present
 set visualbell
@@ -105,6 +105,9 @@ hi FoldColumn      guifg=#93b3a3 guibg=#3f4040
 
 "Search tags file upwards recursively
 set tags=./tags;/
+
+"Set synmaxcol to a low number to avoid slow cursor movement on long lines
+set synmaxcol=300
 
 " Vim indent guides
 let g:indent_guides_guide_size = 1
