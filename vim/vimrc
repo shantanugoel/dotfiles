@@ -160,15 +160,15 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 :nnoremap <A-x> <C-x>
 
 "Grep for word under cursor in current dir recursively and open quicklist window
-if(executable("ag"))
-  set grepprg=ag\ --nogroup\ --nocolor
-  :nnoremap <Leader>g :silent AsyncGrep <C-r><C-w> * <CR>:copen<CR>
+if(executable("pt"))
+  set grepprg=pt\ --nogroup\ --nocolor
+  :nnoremap <Leader>g :silent AsyncGrep <C-r><C-w> . <CR>:copen<CR>
   "Grep for word under cursor in custom dir recursively and open quicklist window
-  :nnoremap <Leader>gc :silent AsyncGrep <C-r><C-w> <C-R>=getcwd()<CR>/**
+  :nnoremap <Leader>gc :silent AsyncGrep <C-r><C-w> <C-R>=getcwd()<CR>/
   "Grep for word under cursor in current file and open quicklist window
   :nnoremap <Leader>gf :silent AsyncGrep <C-r><C-w> % <CR>:copen<CR>
   "Grep for word under cursor in current project root and open quicklist window
-  :nnoremap <Leader>gp :ProjectRootExe silent AsyncGrep <C-r><C-w> * <CR>:copen<CR>
+  :nnoremap <Leader>gp :ProjectRootExe silent AsyncGrep <C-r><C-w> . <CR>:copen<CR>
 else
   set grepprg=grep
   :nnoremap <Leader>g :silent AsyncGrep -nr --mmap --include=\*.{c,cpp,h,xml} <C-r><C-w> * <CR>:copen<CR>
@@ -229,8 +229,8 @@ nnoremap <Leader>r :RainbowParenthesesToggleAll<CR>
 "Set .p4config as a marker to find p4 sync'ed builds' root
 let g:ctrlp_root_markers = ['.p4config']
 let g:ctrlp_extensions = ['tag']
-if(executable("ag"))
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+if(executable("pt"))
+  let g:ctrlp_user_command = 'pt %s -l --nocolor -g .*'
 endif
 
 "#Plugin: vim-projectroot
