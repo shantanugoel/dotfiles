@@ -144,8 +144,11 @@ nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-" Map ctrl+F12 to generate ctags
-map <C-F12> :!ctags -R --sort=yes --c-kinds=+p --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+" Map ctrl+F11 to generate ctags here
+map <C-F11> :!ctags -R --sort=yes --c-kinds=+p --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+
+" Map ctrl+F12 to generate ctags in project root
+map <C-F12> :ProjectRootExe !ctags -R --sort=yes --c-kinds=+p --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 "Map Alt+] to open the tag definition in a split window
 map <A-]> :sp <CR>:exec("tag ".expand("<cword>"))<CR>
@@ -159,6 +162,8 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 :nnoremap <A-a> <C-a>
 :nnoremap <A-x> <C-x>
 
+let ptignore="--ignore=*~ --ignore=*.swp --ignore=tags --ignore=*.bak --ignore=*.pyc --ignore=*.class --ignore=*.o --ignore=*.log --ignore=*.sym --ignore=*.lst --ignore=*.pp --ignore=*.i"
+
 "Grep for word under cursor in current dir recursively and open quicklist window
 if(executable("pt"))
   set grepprg=pt\ --nogroup\ --nocolor
@@ -166,9 +171,9 @@ if(executable("pt"))
   "Grep for word under cursor in custom dir recursively and open quicklist window
   :nnoremap <Leader>gc :silent AsyncGrep <C-r><C-w> <C-R>=getcwd()<CR>/
   "Grep for word under cursor in current file and open quicklist window
-  :nnoremap <Leader>gf :silent AsyncGrep <C-r><C-w> % <CR>:copen<CR>
+  :nnoremap <Leader>gf :silent AsyncGrep <C-r><C-w> %:p<CR>
   "Grep for word under cursor in current project root and open quicklist window
-  :nnoremap <Leader>gp :ProjectRootExe silent AsyncGrep <C-r><C-w> . <CR>:copen<CR>
+  :nnoremap <Leader>gp :silent AsyncGrep <C-r><C-w> <C-R>=ProjectRootGuess() <CR><C-R>=expand(ptignore)<CR><CR>
 else
   set grepprg=grep
   :nnoremap <Leader>g :silent AsyncGrep -nr --mmap --include=\*.{c,cpp,h,xml} <C-r><C-w> * <CR>:copen<CR>
@@ -187,7 +192,9 @@ nnoremap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:new<CR>:setlocal bt=n
 nnoremap <Leader>s :new<CR>:setlocal bt=nofile<CR>
 
 "Status
-set statusline=%F%m%r%h%w\  "filename
+set statusline=%{asynccommand#statusline()} "asyncommand pending
+let g:asynccommand_statusline_autohide = 1  "Hide when nothing pending
+set statusline+=%F%m%r%h%w\  "filename
 "set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
 "set statusline+=%{&ff}] "file format
 set statusline+=%m      "modified flag
@@ -229,8 +236,12 @@ nnoremap <Leader>r :RainbowParenthesesToggleAll<CR>
 "Set .p4config as a marker to find p4 sync'ed builds' root
 let g:ctrlp_root_markers = ['.p4config']
 let g:ctrlp_extensions = ['tag']
+"show MRU files only from current directory
+let g:ctrlp_mruf_relative = 1
+"By default search by filename. Press ctrl+d to search by path
+let g:ctrlp_by_filename = 1
 if(executable("pt"))
-  let g:ctrlp_user_command = 'pt %s -l --nocolor -g .*'
+  let g:ctrlp_user_command = 'pt -l --nocolor -g .* %s '.ptignore
 endif
 
 "#Plugin: vim-projectroot
@@ -249,7 +260,7 @@ let OmniCpp_MayCompleteDot      = 1 " autocomplete after .
 let OmniCpp_MayCompleteArrow    = 1 " autocomplete after ->
 let OmniCpp_MayCompleteScope    = 1 " autocomplete after ::
 " automatically open and close the popup menu / preview window
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+"au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
 
 "cscope
