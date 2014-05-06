@@ -5,7 +5,7 @@ ln -sf "$(pwd)/vim/_gvimrc" ~/.gvimrc
 
 ln -sf "$(pwd)/tmux.conf" ~/.tmux.conf
 
-ln -sf "$(pwd)/ptignore" ~/.ptignore
+ln -sf "$(pwd)/.ptignore" ~/.ptignore
 
 test -d ~/.vim/ || ln -sfT "$(pwd)/vim/" ~/.vim
 mkdir ~/vimtmp
