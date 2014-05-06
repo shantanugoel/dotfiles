@@ -1,0 +1,13 @@
+*~
+*.swp
+tags
+*.bak
+*.pyc
+*.class
+*.o
+*.log
+*.sym
+*.lst
+*.pp
+*.i
+*.obj

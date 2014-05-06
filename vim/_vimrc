@@ -162,8 +162,6 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 :nnoremap <A-a> <C-a>
 :nnoremap <A-x> <C-x>
 
-let ptignore=" --ignore=*~ --ignore=*.swp --ignore=tags --ignore=*.bak --ignore=*.pyc --ignore=*.class --ignore=*.o --ignore=*.log --ignore=*.sym --ignore=*.lst --ignore=*.pp --ignore=*.i"
-
 "Grep for word under cursor in current dir recursively and open quicklist window
 if(executable("pt"))
   set grepprg=pt\ --nogroup\ --nocolor
@@ -173,7 +171,7 @@ if(executable("pt"))
   "Grep for word under cursor in current file and open quicklist window
   :nnoremap <Leader>gf :silent AsyncGrep <C-r><C-w> %:p<CR>
   "Grep for word under cursor in current project root and open quicklist window
-  :nnoremap <Leader>gp :silent AsyncGrep <C-r><C-w> <C-R>=ProjectRootGuess() <CR><C-R>=expand(ptignore)<CR><CR>
+  :nnoremap <Leader>gp :silent AsyncGrep <C-r><C-w> <C-R>=ProjectRootGuess() <CR><CR>
 else
   set grepprg=grep
   :nnoremap <Leader>g :silent AsyncGrep -nr --mmap --include=\*.{c,cpp,h,xml} <C-r><C-w> * <CR>:copen<CR>
@@ -241,7 +239,7 @@ let g:ctrlp_mruf_relative = 1
 "By default search by filename. Press ctrl+d to search by path
 let g:ctrlp_by_filename = 1
 if(executable("pt"))
-  let g:ctrlp_user_command = 'pt -l --nocolor -g .* %s '.ptignore
+  let g:ctrlp_user_command = 'pt -l --nocolor -g .* %s '
 endif
 
 "#Plugin: vim-projectroot
