@@ -49,3 +49,6 @@
 [submodule "vim/bundle/AsyncCommand"]
 	path = vim/bundle/AsyncCommand
 	url = https://github.com/pydave/AsyncCommand.git
+[submodule "vim/bundle/vim-golang"]
+	path = vim/bundle/vim-golang
+	url = https://github.com/jnwhiteh/vim-golang.git

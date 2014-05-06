@@ -162,7 +162,7 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 :nnoremap <A-a> <C-a>
 :nnoremap <A-x> <C-x>
 
-let ptignore="--ignore=*~ --ignore=*.swp --ignore=tags --ignore=*.bak --ignore=*.pyc --ignore=*.class --ignore=*.o --ignore=*.log --ignore=*.sym --ignore=*.lst --ignore=*.pp --ignore=*.i"
+let ptignore=" --ignore=*~ --ignore=*.swp --ignore=tags --ignore=*.bak --ignore=*.pyc --ignore=*.class --ignore=*.o --ignore=*.log --ignore=*.sym --ignore=*.lst --ignore=*.pp --ignore=*.i"
 
 "Grep for word under cursor in current dir recursively and open quicklist window
 if(executable("pt"))
