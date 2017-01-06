@@ -267,6 +267,14 @@ you should place your code here."
     ;; and placed in a appropiate folder
     (setq org-id-method (quote uuidgen))
     (setq org-attach-directory "attach/")
+
+    ;; Set project root with p4 as well
+    (setq projectile-project-root-files '(.projectile .git .p4config .hg))
+
+    (setq vc-follow-symlinks t)
+
+    ;; Start Sr-Speedbar in buffer mode by default
+    ;;(setq speedbar-initial-expansion-list-name "buffers")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
