@@ -261,6 +261,9 @@ let OmniCpp_MayCompleteScope    = 1 " autocomplete after ::
 "au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
 
+"# Plugin: vimwiki
+let g:vimwiki_list = [{"path": $VIMWIKIPATH, "auto_export": 1}]
+
 "cscope
 let g:cscope_cmd = "cscope"
 
