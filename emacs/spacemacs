@@ -30,6 +30,7 @@ values."
      markdown
      org
      html
+     imenu-list
      (shell :variables
              shell-default-height 30
              shell-default-position 'bottom)
@@ -280,6 +281,9 @@ you should place your code here."
     ;; Get path of notes. This has to be set in environment variables in windows and in
     ;; .xsessionrc for linux
     (setq ORGPATH (getenv "ORGPATH"))
+    (setq org-directory ORGPATH)
+    (load-library "find-lisp")
+    (setq org-agenda-files (find-lisp-find-files ORGPATH "\.org$"))
     ;; Important to use "`" instead of "'" to quote the org-publish-project-alist and then use ","
     ;; before using ORGPATH anywhere. This is because by default variables are not evaluated in a quoted
     ;; list. So, we have to use this special format to make sure it is evaluated here otherwise you will
@@ -339,7 +343,35 @@ you should place your code here."
           (start-process "" nil openFileProgram "."))
         ;; (shell-command "xdg-open .") ;; 2013-02-10 this sometimes froze emacs till the folder is closed. For example: with nautilus
         )))
-  )
+
+    (defun shantz-open-scratch-scratch ()
+      "Open the scratch notes org file in a buffer"
+      (interactive)
+      (defvar scratch-note-file (concat ORGPATH "/notes/scratch.org"))
+      (find-file scratch-note-file))
+
+    (defun shantz-open-notes-index ()
+      "Open the scratch notes org file in a buffer"
+      (interactive)
+      (defvar scratch-note-file (concat ORGPATH "/index.org"))
+      (find-file scratch-note-file))
+
+    (spacemacs/declare-prefix "a o n" "notes")
+    (evil-leader/set-key "a o n s" 'shantz-open-notes-scratch)
+    (evil-leader/set-key "a o n i" 'shantz-open-notes-index)
+)
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(paradox-github-token t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
