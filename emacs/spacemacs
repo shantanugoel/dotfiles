@@ -274,6 +274,50 @@ you should place your code here."
     (setq org-log-done t)
     ;; Set the encoding to utf-8
     (setq org-export-coding-system 'utf-8)
+    ;; Set org mode to wrap long lines
+    (setq org-startup-truncated nil)
+    ;; Org publishing
+    ;; Get path of notes. This has to be set in environment variables in windows and in
+    ;; .xsessionrc for linux
+    (setq ORGPATH (getenv "ORGPATH"))
+    ;; Important to use "`" instead of "'" to quote the org-publish-project-alist and then use ","
+    ;; before using ORGPATH anywhere. This is because by default variables are not evaluated in a quoted
+    ;; list. So, we have to use this special format to make sure it is evaluated here otherwise you will
+    ;; end up spending hours to debug why publishing doesn't work like me. :|
+    (setq org-publish-project-alist
+           `(("orgfiles"
+               :base-directory ,ORGPATH
+               :base-extension "org"
+               :publishing-directory ,(concat ORGPATH "/html/")
+               :publishing-function org-html-publish-to-html
+               :exclude nil   ;; regexp
+               :headline-levels 6
+               :recursive t
+               :section-numbers nil
+               :with-toc t
+               :html-head "<link rel=\"stylesheet\"
+                       href=\"../other/mystyle.css\" type=\"text/css\"/>"
+               :html-preamble t)
+
+              ("images"
+               :base-directory ,(concat ORGPATH "/img/")
+               :base-extension "jpg\\|gif\\|png"
+               :publishing-directory ,(concat ORGPATH "/html/img/")
+               :publishing-function org-publish-attachment)
+
+              ("css"
+               :base-directory ,(concat ORGPATH "/css/")
+               :base-extension "css"
+               :publishing-directory ORGPATH"/html/css/"
+               :publishing-function org-publish-attachment)
+
+              ("other"
+               :base-directory ,(concat ORGPATH "/other/")
+               ;; :base-extension "jpg\\|gif\\|png"
+               :publishing-directory ,(concat ORGPATH "/html/other/")
+               :publishing-function org-publish-attachment)
+
+              ("notes" :components ("orgfiles" "images" "css" "other"))))
 
     ;; Start Sr-Speedbar in buffer mode by default
     ;;(setq speedbar-initial-expansion-list-name "buffers")
