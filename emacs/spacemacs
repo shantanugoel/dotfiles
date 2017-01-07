@@ -294,6 +294,7 @@ you should place your code here."
                :headline-levels 6
                :recursive t
                :section-numbers nil
+               :auto-sitemap t
                :with-toc t
                :html-head "<link rel=\"stylesheet\"
                        href=\"../other/mystyle.css\" type=\"text/css\"/>"
