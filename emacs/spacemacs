@@ -29,6 +29,7 @@ values."
      git
      markdown
      org
+     html
      (shell :variables
              shell-default-height 30
              shell-default-position 'bottom)
@@ -82,7 +83,7 @@ values."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner nil
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'.
    ;; (default '(recents projects))
@@ -256,10 +257,6 @@ you should place your code here."
     ;; Wrap at word at end of line
     (setq-default word-wrap 1)
 
-    ;; Org mode settings
-    (setq org-log-done t)
-    ;; Set the encoding to utf-8
-    (setq org-export-coding-system 'utf-8)
     (prefer-coding-system 'utf-8)
     (set-charset-priority 'unicode)
     (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
@@ -273,6 +270,11 @@ you should place your code here."
 
     (setq vc-follow-symlinks t)
 
+    ;; Org mode settings
+    (setq org-log-done t)
+    ;; Set the encoding to utf-8
+    (setq org-export-coding-system 'utf-8)
+    
     ;; Start Sr-Speedbar in buffer mode by default
     ;;(setq speedbar-initial-expansion-list-name "buffers")
   )
