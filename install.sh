@@ -12,3 +12,5 @@ mkdir ~/vimtmp
 
 git config --global core.excludesfile '~/.cvsignore'
 echo tags >> ~/.cvsignore
+
+echo "export ORGPATG=$(HOME)/Dropbox/notes/org" >> ~/.xsessionrc
