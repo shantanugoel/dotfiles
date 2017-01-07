@@ -274,9 +274,26 @@ you should place your code here."
     (setq org-log-done t)
     ;; Set the encoding to utf-8
     (setq org-export-coding-system 'utf-8)
-    
+
     ;; Start Sr-Speedbar in buffer mode by default
     ;;(setq speedbar-initial-expansion-list-name "buffers")
+
+    ;; Functions
+    (defun shantz-open-in-desktop ()
+      (interactive)
+      (cond
+       ((string-equal system-type "windows-nt")
+        (w32-shell-execute "explore" (replace-regexp-in-string "/" "\\" default-directory t t)))
+       ((string-equal system-type "darwin") (shell-command "open ."))
+       ((string-equal system-type "gnu/linux")
+        (let (
+              (process-connection-type nil)
+              (openFileProgram (if (file-exists-p "/usr/bin/gvfs-open")
+                                   "/usr/bin/gvfs-open"
+                                 "/usr/bin/xdg-open")))
+          (start-process "" nil openFileProgram "."))
+        ;; (shell-command "xdg-open .") ;; 2013-02-10 this sometimes froze emacs till the folder is closed. For example: with nautilus
+        )))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
