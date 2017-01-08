@@ -31,6 +31,7 @@ values."
      org
      html
      imenu-list
+     c-c++
      (shell :variables
              shell-default-height 30
              shell-default-position 'bottom)
@@ -344,7 +345,7 @@ you should place your code here."
         ;; (shell-command "xdg-open .") ;; 2013-02-10 this sometimes froze emacs till the folder is closed. For example: with nautilus
         )))
 
-    (defun shantz-open-scratch-scratch ()
+    (defun shantz-open-notes-scratch ()
       "Open the scratch notes org file in a buffer"
       (interactive)
       (defvar scratch-note-file (concat ORGPATH "/notes/scratch.org"))
@@ -353,8 +354,8 @@ you should place your code here."
     (defun shantz-open-notes-index ()
       "Open the scratch notes org file in a buffer"
       (interactive)
-      (defvar scratch-note-file (concat ORGPATH "/index.org"))
-      (find-file scratch-note-file))
+      (defvar index-note-file (concat ORGPATH "/index.org"))
+      (find-file index-note-file))
 
     (spacemacs/declare-prefix "a o n" "notes")
     (evil-leader/set-key "a o n s" 'shantz-open-notes-scratch)
