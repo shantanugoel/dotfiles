@@ -109,7 +109,7 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("monospace"
                                :size 13
                                :weight normal
                                :width normal
@@ -271,6 +271,10 @@ you should place your code here."
     (setq projectile-project-root-files '(.projectile .git .p4config .hg))
 
     (setq vc-follow-symlinks t)
+
+    ;; Set the "sane" bracket indendation
+    (setq c-default-style "linux"
+          c-basic-offset 2)
 
     ;; Org mode settings
     (setq org-log-done t)
