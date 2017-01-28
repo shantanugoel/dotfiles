@@ -279,6 +279,9 @@ you should place your code here."
     (setq c-default-style "linux"
           c-basic-offset 2)
 
+    ;; Indenting guide
+    (indent-guide-global-mode)
+
     ;; Org mode settings
     (setq org-log-done t)
     ;; Set the encoding to utf-8
