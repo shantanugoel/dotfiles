@@ -7,6 +7,8 @@ ln -sf "$(pwd)/tmux.conf" ~/.tmux.conf
 
 ln -sf "$(pwd)/.ptignore" ~/.ptignore
 
+ln -sf "$(pwd)/python/flake8" ~/.config/flake8
+
 test -d ~/.vim/ || ln -sfT "$(pwd)/vim/" ~/.vim
 mkdir ~/vimtmp
 
