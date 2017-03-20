@@ -36,6 +36,7 @@ values."
      html
      imenu-list
      c-c++
+     pandoc
      (shell :variables
              shell-default-height 30
              shell-default-position 'bottom)
@@ -390,6 +391,11 @@ you should place your code here."
     (spacemacs/declare-prefix "a o n" "notes")
     (evil-leader/set-key "a o n s" 'shantz-open-notes-scratch)
     (evil-leader/set-key "a o n i" 'shantz-open-notes-index)
+
+    ;; markdown section
+    ;; use pandoc as markdown compiler
+    (custom-set-variables
+     '(markdown-command "pandoc"))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
