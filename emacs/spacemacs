@@ -276,6 +276,10 @@ you should place your code here."
     ;; Always show buffer/file name in title bar
     (setq frame-title-format "%b")
 
+    ;; use ripgrep for helm-ag
+    (custom-set-variables
+     '(helm-ag-base-command "rg --no-heading"))
+
     ;; Line highlighting/numbering
     (global-linum-mode 1)
     (global-hl-line-mode 1)
