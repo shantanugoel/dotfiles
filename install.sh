@@ -9,6 +9,8 @@ ln -sf "$(pwd)/.ptignore" ~/.ptignore
 
 ln -sf "$(pwd)/python/flake8" ~/.config/flake8
 
+ln -sf "$(pwd)/re/radare2rc" ~/.radare2rc
+
 test -d ~/.vim/ || ln -sfT "$(pwd)/vim/" ~/.vim
 mkdir ~/vimtmp
 
