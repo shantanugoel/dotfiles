@@ -336,6 +336,9 @@ you should place your code here."
     ;; Always show buffer/file name in title bar
     (setq frame-title-format "%b")
 
+    ;; Prevent visual selection from overriding clipboard
+    (fset 'evil-visual-update-x-selection 'ignore)
+
     ;; Don't create lockfiles
     (setq create-lockfiles nil)
 
