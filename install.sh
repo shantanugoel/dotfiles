@@ -11,6 +11,8 @@ ln -sf "$(pwd)/python/flake8" ~/.config/flake8
 
 ln -sf "$(pwd)/re/radare2rc" ~/.radare2rc
 
+ln -sf "$(pwd)/gdbinit" ~/.gdbinit
+
 test -d ~/.vim/ || ln -sfT "$(pwd)/vim/" ~/.vim
 mkdir ~/vimtmp
 
