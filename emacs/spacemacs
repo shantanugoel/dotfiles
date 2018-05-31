@@ -481,6 +481,8 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my-setup-indent 2) ; indent 2 spaces width
+  (setq custom-file "~/.emacs.d/.cache/.custom-settings")
+  (load custom-file)
   )
 
 (defun dotspacemacs/user-load ()
@@ -505,15 +507,7 @@ before packages are loaded."
     ;; Don't create lockfiles
     (setq create-lockfiles nil)
 
-    ;; use ripgrep for helm-ag
-    (custom-set-variables
-     '(helm-ag-base-command "rg --smart-case --no-heading"))
-    ;; (setq helm-grep-ag-command "rg --smart-case --no-heading --line-number %s %s %s")
-    ;; (setq helm-grep-ag-pipe-cmd-switches '("--colors 'match:fg:black'" "--colors 'match:bg:yellow'"))
-
-
     ;; Line highlighting/numbering
-    (global-linum-mode 1)
     (global-hl-line-mode 1)
 
     ;; Wrap at word at end of line
@@ -632,55 +626,4 @@ before packages are loaded."
     ;; use pandoc as markdown compiler
     (custom-set-variables
      '(markdown-command "pandoc"))
-)
-
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(evil-want-Y-yank-to-eol nil)
- '(helm-ag-base-command "rg --smart-case --no-heading")
- '(markdown-command "pandoc")
- '(org-agenda-files
-   (quote
-    ("/home/shantanu/Dropbox/all/notes/org/sitemap.org" "/home/shantanu/Dropbox/all/notes/org/TODOs.org" "/home/shantanu/Dropbox/all/notes/org/notes/radare.org" "/home/shantanu/Dropbox/all/notes/org/notes/sitemap.org" "/home/shantanu/Dropbox/all/notes/org/notes/aiml.org" "/home/shantanu/Dropbox/all/notes/org/notes/TODOs.org" "/home/shantanu/Dropbox/all/notes/org/notes/work.org" "/home/shantanu/Dropbox/all/notes/org/notes/newsletter.org" "/home/shantanu/Dropbox/all/notes/org/notes/bookmarks.org" "/home/shantanu/Dropbox/all/notes/org/notes/scratch.org" "/home/shantanu/Dropbox/all/notes/org/notes/work_ssg.org" "/home/shantanu/Dropbox/all/notes/org/notes/guitar.org" "/home/shantanu/Dropbox/all/notes/org/notes/dev.org" "/home/shantanu/Dropbox/all/notes/org/notes/hack.org" "/home/shantanu/Dropbox/all/notes/org/notes/crypto.org" "/home/shantanu/Dropbox/all/notes/org/notes/synology.org" "/home/shantanu/Dropbox/all/notes/org/notes/index.org" "/home/shantanu/Dropbox/all/notes/org/notes/Getting Started with Orgzly.org" "/home/shantanu/Dropbox/all/notes/org/index.org")))
- '(package-selected-packages
-   (quote
-    (gitignore-mode magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache csv-mode org-mime epl powerline org-category-capture ghub let-alist cython-mode company-anaconda bind-key pythonic iedit goto-chg undo-tree flyspell-popup flyspell-correct-helm flyspell-correct auto-dictionary go-guru go-eldoc company-go go-mode diminish f s rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby winum fuzzy flycheck-rust anaconda-mode log4e markdown-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc seq flycheck-pos-tip pos-tip flycheck packed auto-complete smartparens highlight evil avy magit-popup async haml-mode dash pandoc-mode ox-pandoc ht yaml-mode web-beautify toml-mode racer livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode cargo rust-mode yasnippet company request helm helm-core magit git-commit with-editor alert projectile hydra wgrep smex ivy-hydra counsel-projectile counsel swiper ivy xterm-color ws-butler window-numbering which-key web-mode volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit spacemacs-theme spaceline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters quelpa pug-mode popwin persp-mode pcre2el paradox orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file neotree multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum linum-relative link-hint less-css-mode info+ indent-guide imenu-list ido-vertical-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump disaster define-word company-web company-statistics company-c-headers column-enforce-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
- '(paradox-github-token t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-(defun dotspacemacs/emacs-custom-settings ()
-  "Emacs custom settings.
-This is an auto-generated function, do not modify its content directly, use
-Emacs customize menu instead.
-This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(evil-want-Y-yank-to-eol nil)
- '(helm-ag-base-command "rg --smart-case --no-heading")
- '(markdown-command "pandoc")
- '(org-agenda-files
-   (quote
-    ("/home/shantanu/Dropbox/all/notes/org/sitemap.org" "/home/shantanu/Dropbox/all/notes/org/TODOs.org" "/home/shantanu/Dropbox/all/notes/org/notes/radare.org" "/home/shantanu/Dropbox/all/notes/org/notes/sitemap.org" "/home/shantanu/Dropbox/all/notes/org/notes/aiml.org" "/home/shantanu/Dropbox/all/notes/org/notes/TODOs.org" "/home/shantanu/Dropbox/all/notes/org/notes/work.org" "/home/shantanu/Dropbox/all/notes/org/notes/newsletter.org" "/home/shantanu/Dropbox/all/notes/org/notes/bookmarks.org" "/home/shantanu/Dropbox/all/notes/org/notes/scratch.org" "/home/shantanu/Dropbox/all/notes/org/notes/work_ssg.org" "/home/shantanu/Dropbox/all/notes/org/notes/guitar.org" "/home/shantanu/Dropbox/all/notes/org/notes/dev.org" "/home/shantanu/Dropbox/all/notes/org/notes/hack.org" "/home/shantanu/Dropbox/all/notes/org/notes/crypto.org" "/home/shantanu/Dropbox/all/notes/org/notes/synology.org" "/home/shantanu/Dropbox/all/notes/org/notes/index.org" "/home/shantanu/Dropbox/all/notes/org/notes/Getting Started with Orgzly.org" "/home/shantanu/Dropbox/all/notes/org/index.org")))
- '(package-selected-packages
-   (quote
-    (magit-svn gitignore-mode magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache csv-mode org-mime epl powerline org-category-capture ghub let-alist cython-mode company-anaconda bind-key pythonic iedit goto-chg undo-tree flyspell-popup flyspell-correct-helm flyspell-correct auto-dictionary go-guru go-eldoc company-go go-mode diminish f s rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby winum fuzzy flycheck-rust anaconda-mode log4e markdown-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc seq flycheck-pos-tip pos-tip flycheck packed auto-complete smartparens highlight evil avy magit-popup async haml-mode dash pandoc-mode ox-pandoc ht yaml-mode web-beautify toml-mode racer livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode cargo rust-mode yasnippet company request helm helm-core magit git-commit with-editor alert projectile hydra wgrep smex ivy-hydra counsel-projectile counsel swiper ivy xterm-color ws-butler window-numbering which-key web-mode volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit spacemacs-theme spaceline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters quelpa pug-mode popwin persp-mode pcre2el paradox orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file neotree multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum linum-relative link-hint less-css-mode info+ indent-guide imenu-list ido-vertical-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump disaster define-word company-web company-statistics company-c-headers column-enforce-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
- '(paradox-github-token t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 )
