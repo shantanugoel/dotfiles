@@ -498,132 +498,136 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-    ;; Always show buffer/file name in title bar
-    (setq frame-title-format "%b")
 
-    ;; Prevent visual selection from overriding clipboard
-    (fset 'evil-visual-update-x-selection 'ignore)
+  ;; Restrict line number display width. Remove this once fixed in spacemacs
+  (setq-default display-line-numbers-width nil)
 
-    ;; Don't create lockfiles
-    (setq create-lockfiles nil)
+  ;; Always show buffer/file name in title bar
+  (setq frame-title-format "%b")
 
-    ;; Line highlighting/numbering
-    (global-hl-line-mode 1)
+  ;; Prevent visual selection from overriding clipboard
+  (fset 'evil-visual-update-x-selection 'ignore)
 
-    ;; Wrap at word at end of line
-    (setq-default word-wrap 1)
+  ;; Don't create lockfiles
+  (setq create-lockfiles nil)
 
-    (prefer-coding-system 'utf-8)
-    (set-charset-priority 'unicode)
-    (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
-    ;; Make attachments be copied / assigned a uuid
-    ;; and placed in a appropiate folder
-    (setq org-id-method (quote uuidgen))
-    (setq org-attach-directory "attach/")
+  ;; Line highlighting/numbering
+  (global-hl-line-mode 1)
 
-    ;; Set project root with p4 as well
-    (setq projectile-project-root-files '(.projectile .git .p4config .hg))
+  ;; Wrap at word at end of line
+  (setq-default word-wrap 1)
 
-    (setq vc-follow-symlinks t)
+  (prefer-coding-system 'utf-8)
+  (set-charset-priority 'unicode)
+  (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
+  ;; Make attachments be copied / assigned a uuid
+  ;; and placed in a appropiate folder
+  (setq org-id-method (quote uuidgen))
+  (setq org-attach-directory "attach/")
 
-    ;; Set the "sane" bracket indendation
-    (setq c-default-style "linux"
-          c-basic-offset 2)
+  ;; Set project root with p4 as well
+  (setq projectile-project-root-files '(.projectile .git .p4config .hg))
 
-    ;; Indenting guide
-    (indent-guide-global-mode)
+  (setq vc-follow-symlinks t)
 
-    ;; Org mode settings
-    (setq org-log-done t)
-    ;; Set the encoding to utf-8
-    (setq org-export-coding-system 'utf-8)
-    ;; Set org mode to wrap long lines
-    (setq org-startup-truncated nil)
-    ;; Org publishing
-    ;; Get path of notes. This has to be set in environment variables in windows and in
-    ;; .xsessionrc for linux
-    (setq ORGPATH (getenv "ORGPATH"))
-    (setq org-directory ORGPATH)
-    (load-library "find-lisp")
-    (setq org-agenda-files (find-lisp-find-files ORGPATH "\.org$"))
-    ;; Important to use "`" instead of "'" to quote the org-publish-project-alist and then use ","
-    ;; before using ORGPATH anywhere. This is because by default variables are not evaluated in a quoted
-    ;; list. So, we have to use this special format to make sure it is evaluated here otherwise you will
-    ;; end up spending hours to debug why publishing doesn't work like me. :|
-    (setq org-publish-project-alist
-           `(("orgfiles"
-               :base-directory ,ORGPATH
-               :base-extension "org"
-               :publishing-directory ,(concat ORGPATH "/html/")
-               :publishing-function org-html-publish-to-html
-               :exclude nil   ;; regexp
-               :headline-levels 6
-               :recursive t
-               :section-numbers nil
-               :auto-sitemap t
-               :with-toc t
-               :html-head "<link rel=\"stylesheet\"
+  ;; Set the "sane" bracket indendation
+  (setq c-default-style "linux"
+        c-basic-offset 2)
+
+  ;; Indenting guide
+  (indent-guide-global-mode)
+
+  ;; Org mode settings
+  (setq org-log-done t)
+  ;; Set the encoding to utf-8
+  (setq org-export-coding-system 'utf-8)
+  ;; Set org mode to wrap long lines
+  (setq org-startup-truncated nil)
+  ;; Org publishing
+  ;; Get path of notes. This has to be set in environment variables in windows and in
+  ;; .xsessionrc for linux
+  (setq ORGPATH (getenv "ORGPATH"))
+  (setq org-directory ORGPATH)
+  (load-library "find-lisp")
+  (setq org-agenda-files (find-lisp-find-files ORGPATH "\.org$"))
+  ;; Important to use "`" instead of "'" to quote the org-publish-project-alist and then use ","
+  ;; before using ORGPATH anywhere. This is because by default variables are not evaluated in a quoted
+  ;; list. So, we have to use this special format to make sure it is evaluated here otherwise you will
+  ;; end up spending hours to debug why publishing doesn't work like me. :|
+  (setq org-publish-project-alist
+        `(("orgfiles"
+           :base-directory ,ORGPATH
+           :base-extension "org"
+           :publishing-directory ,(concat ORGPATH "/html/")
+           :publishing-function org-html-publish-to-html
+           :exclude nil   ;; regexp
+           :headline-levels 6
+           :recursive t
+           :section-numbers nil
+           :auto-sitemap t
+           :with-toc t
+           :html-head "<link rel=\"stylesheet\"
                        href=\"../other/mystyle.css\" type=\"text/css\"/>"
-               :html-preamble t)
+           :html-preamble t)
 
-              ("images"
-               :base-directory ,(concat ORGPATH "/img/")
-               :base-extension "jpg\\|gif\\|png"
-               :publishing-directory ,(concat ORGPATH "/html/img/")
-               :publishing-function org-publish-attachment)
+          ("images"
+           :base-directory ,(concat ORGPATH "/img/")
+           :base-extension "jpg\\|gif\\|png"
+           :publishing-directory ,(concat ORGPATH "/html/img/")
+           :publishing-function org-publish-attachment)
 
-              ("css"
-               :base-directory ,(concat ORGPATH "/css/")
-               :base-extension "css"
-               :publishing-directory ORGPATH"/html/css/"
-               :publishing-function org-publish-attachment)
+          ("css"
+           :base-directory ,(concat ORGPATH "/css/")
+           :base-extension "css"
+           :publishing-directory ORGPATH"/html/css/"
+           :publishing-function org-publish-attachment)
 
-              ("other"
-               :base-directory ,(concat ORGPATH "/other/")
-               ;; :base-extension "jpg\\|gif\\|png"
-               :publishing-directory ,(concat ORGPATH "/html/other/")
-               :publishing-function org-publish-attachment)
+          ("other"
+           :base-directory ,(concat ORGPATH "/other/")
+           ;; :base-extension "jpg\\|gif\\|png"
+           :publishing-directory ,(concat ORGPATH "/html/other/")
+           :publishing-function org-publish-attachment)
 
-              ("notes" :components ("orgfiles" "images" "css" "other"))))
+          ("notes" :components ("orgfiles" "images" "css" "other"))))
 
-    ;; Start Sr-Speedbar in buffer mode by default
-    ;;(setq speedbar-initial-expansion-list-name "buffers")
+  ;; Start Sr-Speedbar in buffer mode by default
+  ;;(setq speedbar-initial-expansion-list-name "buffers")
 
-    ;; Functions
-    (defun shantz-open-in-desktop ()
-      (interactive)
-      (cond
-       ((string-equal system-type "windows-nt")
-        (w32-shell-execute "explore" (replace-regexp-in-string "/" "\\" default-directory t t)))
-       ((string-equal system-type "darwin") (shell-command "open ."))
-       ((string-equal system-type "gnu/linux")
-        (let (
-              (process-connection-type nil)
-              (openFileProgram (if (file-exists-p "/usr/bin/gvfs-open")
-                                   "/usr/bin/gvfs-open"
-                                 "/usr/bin/xdg-open")))
-          (start-process "" nil openFileProgram "."))
-        ;; (shell-command "xdg-open .") ;; 2013-02-10 this sometimes froze emacs till the folder is closed. For example: with nautilus
-        )))
+  ;; Functions
+  (defun shantz-open-in-desktop ()
+    (interactive)
+    (cond
+     ((string-equal system-type "windows-nt")
+      (w32-shell-execute "explore" (replace-regexp-in-string "/" "\\" default-directory t t)))
+     ((string-equal system-type "darwin") (shell-command "open ."))
+     ((string-equal system-type "gnu/linux")
+      (let (
+            (process-connection-type nil)
+            (openFileProgram (if (file-exists-p "/usr/bin/gvfs-open")
+                                 "/usr/bin/gvfs-open"
+                               "/usr/bin/xdg-open")))
+        (start-process "" nil openFileProgram "."))
+      ;; (shell-command "xdg-open .") ;; 2013-02-10 this sometimes froze emacs till the folder is closed. For example: with nautilus
+      )))
 
-    (defun shantz-open-notes-scratch ()
-      "Open the scratch notes org file in a buffer"
-      (interactive)
-      (defvar scratch-note-file (concat ORGPATH "/notes/scratch.org"))
-      (find-file scratch-note-file))
+  (defun shantz-open-notes-scratch ()
+    "Open the scratch notes org file in a buffer"
+    (interactive)
+    (defvar scratch-note-file (concat ORGPATH "/notes/scratch.org"))
+    (find-file scratch-note-file))
 
-    (defun shantz-open-notes-index ()
-      "Open the scratch notes org file in a buffer"
-      (interactive)
-      (defvar index-note-file (concat ORGPATH "/index.org"))
-      (find-file index-note-file))
+  (defun shantz-open-notes-index ()
+    "Open the scratch notes org file in a buffer"
+    (interactive)
+    (defvar index-note-file (concat ORGPATH "/index.org"))
+    (find-file index-note-file))
 
-    (spacemacs/declare-prefix "a o n" "notes")
-    (evil-leader/set-key "a o n s" 'shantz-open-notes-scratch)
-    (evil-leader/set-key "a o n i" 'shantz-open-notes-index)
+  (spacemacs/declare-prefix "a o n" "notes")
+  (evil-leader/set-key "a o n s" 'shantz-open-notes-scratch)
+  (evil-leader/set-key "a o n i" 'shantz-open-notes-index)
 
-    ;; markdown section
-    ;; use pandoc as markdown compiler
-    (custom-set-variables
-     '(markdown-command "pandoc"))
-)
+  ;; markdown section
+  ;; use pandoc as markdown compiler
+  (custom-set-variables
+   '(markdown-command "pandoc"))
+  )
