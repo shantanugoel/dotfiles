@@ -466,8 +466,14 @@ See the header of this file for more information."
 
 (defun shantz-cquery-enable ()
   (interactive)
-  (lsp-cquery-enable)
-  (add-to-list 'company-backends 'company-lsp)
+  (if (projectile-project-p)
+    (if (file-exists-p (concat (projectile-project-root) "compile_commands.json"))
+      (progn
+        (lsp-cquery-enable)
+        (add-to-list 'company-backends 'company-lsp)
+        )
+      )
+    )
   )
 
 (defun dotspacemacs/user-init ()
