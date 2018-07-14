@@ -39,6 +39,7 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     lsp
      csv
      go
      ruby
@@ -76,6 +77,7 @@ This function should only modify configuration layer settings."
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(
+                                      cquery
                                       ztree)
 
    ;; A list of packages that cannot be updated.
@@ -444,12 +446,19 @@ It should only modify the values of Spacemacs settings."
   (setq coffee-tab-width n) ; coffeescript
   (setq javascript-indent-level n) ; javascript-mode
   (setq python-indent-offset n) ; python-mode
+  (setq lisp-indent-offset n) ; python-mode
   (setq js-indent-level n) ; js-mode
   (setq js2-basic-offset n) ; js2-mode, in latest js2-mode, it's alias of js-indent-level
   (setq web-mode-markup-indent-offset n) ; web-mode, html tag in html file
   (setq web-mode-css-indent-offset n) ; web-mode, css in html file
   (setq web-mode-code-indent-offset n) ; web-mode, js code in html file
   (setq css-indent-offset n) ; css-mode
+  )
+
+(defun shantz-cquery-enable ()
+  (interactive)
+  (lsp-cquery-enable)
+  (add-to-list 'company-backends 'company-lsp)
   )
 
 (defun dotspacemacs/user-init ()
@@ -476,6 +485,10 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+
+  (require 'cquery)
+  (setq cquery-executable "/usr/bin/cquery")
+  (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack" :completion (:detailedLabel t)))
 
   ;; Restrict line number display width. Remove this once fixed in spacemacs
   (setq-default display-line-numbers-width nil)
