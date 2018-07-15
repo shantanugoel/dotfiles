@@ -53,7 +53,8 @@ This function should only modify configuration layer settings."
      git
      github
      markdown
-     org
+      (org :variables
+        org-enable-reveal-js-support t)
      html
      imenu-list
      c-c++
@@ -475,6 +476,15 @@ See the header of this file for more information."
       )
     )
   )
+
+(defun shantz-toggle-org-reveal-html-export-on-save ()
+  (interactive)
+  (if (memq 'org-reveal-export-to-html after-save-hook)
+    (progn
+      (remove-hook 'after-save-hook 'org-reveal-export-to-html t)
+      (message "Disabled org html export on save for current buffer..."))
+    (add-hook 'after-save-hook 'org-reveal-export-to-html nil t)
+    (message "Enabled org html export on save for current buffer...")))
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
