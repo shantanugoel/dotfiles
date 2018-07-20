@@ -481,9 +481,9 @@ See the header of this file for more information."
   (interactive)
   (if (memq 'org-reveal-export-to-html after-save-hook)
     (progn
-      (remove-hook 'after-save-hook 'org-reveal-export-to-html t)
+      (remove-hook 'after-save-hook 'org-reveal-export-current-subtree t)
       (message "Disabled org html export on save for current buffer..."))
-    (add-hook 'after-save-hook 'org-reveal-export-to-html nil t)
+    (add-hook 'after-save-hook 'org-reveal-export-current-subtree nil t)
     (message "Enabled org html export on save for current buffer...")))
 
 (defun dotspacemacs/user-init ()
