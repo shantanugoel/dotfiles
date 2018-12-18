@@ -47,6 +47,7 @@ This function should only modify configuration layer settings."
      javascript
      yaml
      rust
+     copy-as-format
      auto-completion
      ;; better-defaults
      emacs-lisp

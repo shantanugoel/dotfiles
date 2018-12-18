@@ -21,3 +21,4 @@ synology-cloud-station-backup
 tlp
 veracrypt
 yay
+plasma5-runners-symbols
