@@ -1,0 +1,14 @@
+# CLI
+
+## Used
+fd
+bat
+rg
+fzf
+fasd
+
+## Try
+lazygit
+ranger
+fselect
+visidata
