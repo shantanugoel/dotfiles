@@ -6,9 +6,9 @@ bat
 rg
 fzf
 fasd
+ranger
 
 ## Try
-lazygit
-ranger
-fselect
-visidata
+lazygit - magit is better
+fselect - used often?
+visidata - used often?
