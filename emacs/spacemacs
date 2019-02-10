@@ -1,4 +1,4 @@
-;; -*- mode: emacs-lisp -*-
+;; -*- mode: emacs-lisp; lexical-binding: t -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -48,13 +48,14 @@ This function should only modify configuration layer settings."
      yaml
      rust
      copy-as-format
+     helm
      auto-completion
      ;; better-defaults
      emacs-lisp
      git
-     github
      markdown
      multiple-cursors
+     treemacs
      (org :variables
         org-enable-reveal-js-support t)
      html
@@ -226,7 +227,7 @@ It should only modify the values of Spacemacs settings."
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
-   ;; The leader key
+   ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
 
    ;; The key used for Emacs commands `M-x' (after pressing on the leader key).
@@ -513,6 +514,10 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
+  (cond ((eq system-type 'windows-nt)
+          (setq org-download-screenshot-method "convert clipboard: %s"))
+    (t (setq org-download-screenshot-method "xclip -selection clipboard -t image/png -o > %s")))
+
   (require 'cquery)
   (setq cquery-executable "/usr/bin/cquery")
   (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack" :completion (:detailedLabel t)))
@@ -648,7 +653,10 @@ before packages are loaded."
   ;; markdown section
   ;; use pandoc as markdown compiler
   (custom-set-variables
-   '(markdown-command "pandoc"))
+    '(markdown-command "pandoc")
+    '(projectile-git-command "fd . -0")
+    '(projectile-generic-command "fd . -0")
+    )
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
