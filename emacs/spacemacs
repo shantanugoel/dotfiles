@@ -550,7 +550,7 @@ before packages are loaded."
   (setq org-attach-directory "attach/")
 
   ;; Set project root with p4 as well
-  (setq projectile-project-root-files '(.projectile .git .p4config .hg))
+  ;;(setq projectile-project-root-files '(.projectile .git .p4config .hg))
 
   (setq vc-follow-symlinks t)
 
